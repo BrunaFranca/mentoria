@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  anymarket-postgres:
+        image: postgres:12.7
+        environment:
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "postgres"
+            POSTGRES_HOST_AUTH_METHOD: "trust"
+        restart: always
+        container_name: anymarket-postgres
+        ports:
+        - 5431:5432
+        extra_hosts:
+        - "localhost:192.168.2.2"
