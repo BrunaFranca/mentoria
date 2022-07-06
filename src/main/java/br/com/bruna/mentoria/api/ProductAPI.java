@@ -1,6 +1,7 @@
 package br.com.bruna.mentoria.api;
 
 import br.com.bruna.mentoria.domain.Product;
+import br.com.bruna.mentoria.domain.ProductDTO;
 import br.com.bruna.mentoria.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +36,19 @@ public class ProductAPI {
         return productById.get();
     }
 
+    @RequestMapping(method = {RequestMethod.POST})
+    public Product postProduct(@RequestBody ProductDTO product) {
+        return productService.postProduct(product);
+    }
+
+    @RequestMapping(value = {"/{idProduct}"}, method = {RequestMethod.PUT})
+    public Product putProductById(@PathVariable("idProduct") Long idProduct, @RequestBody ProductDTO product) {
+        return productService.putProduct(idProduct, product);
+    }
+
+    @RequestMapping(value = {"/{idProduct}"}, method = {RequestMethod.DELETE})
+    public void deleteProductById(@PathVariable("idProduct") Long idProduct) {
+        productService.deleteProductById(idProduct);
+    }
 }
 
